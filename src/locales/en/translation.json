@@ -1,0 +1,95 @@
+{
+  "sidebar": {
+    "home": "Home",
+    "calendar": "Calendar",
+    "educators": "Educators",
+    "academy": "Academy",
+    "forum": "Forum",
+    "backoffice": "Back office",
+    "menu": "Menu"
+  },
+  "home": {
+    "welcome": "Welcome",
+    "topEducators": "Top Educators",
+    "viewAll": "View all",
+    "educationDay": "NVU EDUCATION DAY",
+    "categories": "Categories",
+    "joinTelegram": "Join Telegram",
+    "ourEducators": "Our Educators",
+    "noTopEducators": "No featured educators available.",
+    "noEducatorsPreview": "No educators to display."
+  },
+  "common": {
+    "viewMore": "View more",
+    "nameNotAvailable": "Name not available",
+    "specialist": "Specialist",
+    "bioNotAvailable": "Biography not available."
+  },
+  "social": {
+    "instagram": "Instagram",
+    "telegram": "Telegram"
+  },
+  "educatorDetail": {
+    "back": "Back to Educators",
+    "notFound": "Educator not found.",
+    "liveStreamTitle": "Live Stream by",
+    "streamNotAvailable": "Live stream currently unavailable.",
+    "favoriteSessions": "Favorite Sessions"
+  },
+  "educatorsBio": {
+    "seb-garcia": "I am an educator with over 10 years of trading experience, having guided more than 1,000 students to transform their results on the charts and in their lives. My approach combines effective Smart Money strategies with advanced NLP (Neuro-Linguistic Programming) tools, allowing my students to double their results in 90 days.",
+    "abi-belity": "Abi Belilty is a professional trader with over 7 years of experience in the financial markets. With an innate passion for trading, Abi has dedicated years of his life to perfecting his skills and knowledge in the world of investments.\\n\\nWith a unique and insightful vision, Abi invites people from all over the world to connect to his sessions, where he shares his favorite strategies and key tips to take trading to the next level. His practical approach and ability to simplify complex concepts make his sessions accessible and valuable for traders of all levels.",
+    "frank-araujo": "Trader with over 5 years of experience in financial markets, specializing in the EUR/USD pair. As a swing trader, I will provide you with the right tools to learn trading from the basics to the advanced, with a clear focus on mastering the charts and understanding market behavior professionally.",
+    "maur-gaytan": "Engineer by Profession, Certified Leadership Coach, 4 years as a Trader, specializing in trading XAU and JPY pairs with his own strategy, married with two daughters.",
+    "aring-long-fx": "Arin Long has a true passion for education and a strong foundation in problem-solving and process optimization, which she developed during her career as a mechanical engineer. With a natural affinity for technical analysis, she transitioned into trading five years ago and quickly developed a deep passion for the markets. Arin's trading approach is grounded in her technical mindset and meticulous attention to detail, skills she further refined through mentorship with Richard Hall (aka Market Bully). By mastering simple yet powerful strategies, Arin remains committed to continuous learning, constantly refining her techniques and expanding her market knowledge.",
+    "marcelo-t-fx": "I am Marcelo Trullen, an expert in E-commerce and Digital Marketing. My passion for digital growth and the continuous search for effective solutions has allowed me to help teams take their businesses to the next level. I am committed to continuous learning and the implementation of cutting-edge solutions in the world of e-commerce.",
+    "richard-p-fx": "Expert educator in their field, committed to student success.",
+    "about-nikki-fx": "Expert educator in their field, committed to student success.",
+    "jorge-damelines": "Expert in human development and evolution, guide of transformative experiences, Accompanying processes of self-knowledge, inner power, and conscious action",
+    "jeff-beausoleil": "My name is Jeffrey Beausoleil, and I'm 25 years old, living on the South Shore of Montreal, Canada. Born without my right hand and foot, I faced many challenges growing up, including bullying and difficulty making friends. Despite this, I remained energetic and positive, playing sports like soccer, handball, basketball, and football, never letting my disability limit me.\\n\\nMy journey led me to give over 250 speeches on bullying prevention and motivation across Quebec and Ontario, reaching 50,000 people at one event. However, when COVID-19 hit, I had to pause my speaking engagements and return to school, where I studied journalism but was unhappy with the career path. That's when I discovered trading, initially struggling with misconceptions and failures, but eventually succeeding after three years of hard work and persistence.",
+    "corey-williams": "Expert educator in their field, committed to student success.",
+    "dani-curtis": "Raquel Curtis, MBA, is a financial educator, entrepreneur, and international best-selling author dedicated to helping women take control of their finances and build wealth. A Georgia native and mother of three, Raquel turned personal setbacks into success through budgeting and investing, inspiring the creation of The Boujee Banker brand. She teaches women how to budget, save, invest, and grow online businesses. Raquel is the author of Mastering Your Money Mindset and co-author of the Amazon best-seller MoneyTalk$, featuring a foreword by Les Brown. A dynamic speaker and doctoral candidate, she has impacted thousands globally, guiding individuals toward lasting financial empowerment.",
+    "annie-toney": "Expert educator in their field, committed to student success.",
+    "al-blue": "Dr. A.L.Blue, Sr. Is an bestselling Author, Wealth evangelist & private equity investor serving as Senior Partner & managing director of Blue Wealth Solutions Consolidated LLC, A better life financial empowerment, Wealth Building, & Educational Company focused on true wealth creation and asset accumulation in Precious Metals as well as generational wealth and trust fund creation solutions. He also serve as a Wealth evangelist teaching biblical principles on wealth creation and better living from a spiritual perspective as a Kingdom Financier.",
+    "paulina": "Expert educator in their field, committed to student success.",
+    "henry-tyson": "I am strong and passionate person about what I do. As long as I put my mind to it I can achieve it. I put god first into everything I do",
+    "steph-royal": "Stephon Royal is a passionate and dynamic social media educator dedicated to empowering individuals and businesses to master the art of digital storytelling and online influence. With years of experience in creating viral-worthy content and building impactful online brands, Stephon combines creativity with strategy to help students unlock the full potential of social media platforms\\n\\nSpecializing in content creation, audience engagement, and monetization strategies, Stephon has developed a reputation for delivering practical insights, innovative techniques, and actionable solutions. Whether you're a beginner influencer, a small business owner, or a seasoned marketer, Stephon's approachable teaching style ensures every student walks away with the skills and confidence to thrive in the ever-evolving world of social media.\\n\\nKnown for his energetic workshops and personalized coaching, Stephon's mission is simple: to help you build a brand that not only stands out but also connects, converts, and creates lasting impact."
+  },
+  "login": {
+    "title": "Login",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "loadingButton": "Logging in...",
+    "loginButton": "Login",
+    "resetPasswordPrompt": "Trouble logging in?",
+    "resetPasswordLink": "Reset your password.",
+    "error": {
+        "generic": "Login failed. Please try again.",
+        "expired": "Your membership has expired.",
+        "invalidCredentials": "Invalid credentials.",
+        "connection": "Connection error. Please try again."
+    }
+  },
+  "educators": {
+      "pageTitle": "Educators",
+      "noEducatorsInCategory": "No educators in this category."
+  },
+  "categories": {
+      "forex": "Forex",
+      "crypto": "Crypto",
+      "financial_literacy": "Financial Literacy",
+      "marketing_digital": "Digital Marketing"
+  },
+  "calendar": {
+    "pageTitle": "Calendar",
+    "timeHeader": "Time",
+    "educatorHeader": "Educator",
+    "noEvents": "No events scheduled for this day.",
+    "month": "Month",
+    "week": "Week",
+    "day": "Day",
+    "today": "Today",
+    "previous": "Back",
+    "next": "Next"
+  }
+} 

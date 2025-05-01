@@ -1,0 +1,95 @@
+{
+  "sidebar": {
+    "home": "Inicio",
+    "calendar": "Calendario",
+    "educators": "Educadores",
+    "academy": "Academia",
+    "forum": "Foro",
+    "backoffice": "Back office",
+    "menu": "Menú"
+  },
+  "home": {
+    "welcome": "Bienvenido",
+    "topEducators": "Educadores Top",
+    "viewAll": "Ver todos",
+    "educationDay": "NVU EDUCATION DAY",
+    "categories": "Categorías",
+    "joinTelegram": "Únete a Telegram",
+    "ourEducators": "Nuestros Educadores",
+    "noTopEducators": "No hay educadores destacados disponibles.",
+    "noEducatorsPreview": "No hay educadores para mostrar."
+  },
+  "common": {
+    "viewMore": "Ver más",
+    "nameNotAvailable": "Nombre no disponible",
+    "specialist": "Especialista",
+    "bioNotAvailable": "Biografía no disponible."
+  },
+  "social": {
+    "instagram": "Instagram",
+    "telegram": "Telegram"
+  },
+  "educatorDetail": {
+    "back": "Volver a Educadores",
+    "notFound": "Educador no encontrado.",
+    "liveStreamTitle": "Transmisión en vivo de",
+    "streamNotAvailable": "Stream en vivo no disponible actualmente.",
+    "favoriteSessions": "Sesiones Favoritas"
+  },
+  "educatorsBio": {
+    "seb-garcia": "Soy un educador con más de 10 años de experiencia en el trading, habiendo guiado a más de 1,000 estudiantes a transformar sus resultados en los gráficos y en sus vidas. Mi enfoque combina estrategias efectivas de Smart Money con herramientas avanzadas de PNL (Programación Neurolingüística), permitiendo a mis estudiantes duplicar sus resultados en 90 días.",
+    "abi-belity": "Abi Belilty es un trader profesional con más de 7 años de experiencia en los mercados financieros. Con una pasión innata por el trading, Abi ha dedicado años de su vida a perfeccionar sus habilidades y conocimientos en el mundo de las inversiones.\\n\\nCon una visión única y perspicaz, Abi invita a personas de todo el mundo a conectarse a sus sesiones, donde comparte sus estrategias favoritas y consejos clave para llevar el trading a un nivel superior. Su enfoque práctico y su capacidad para simplificar conceptos complejos hacen que sus sesiones sean accesibles y valiosas para traders de todos los niveles.",
+    "frank-araujo": "Trader con más de 5 años de experiencia en los mercados financieros, especializado en el par EUR/USD. Como swing trader, te brindaré las herramientas correctas para que aprendas trading desde lo más básico hasta lo más avanzado, con un enfoque claro en dominar las gráficas y entender el comportamiento del mercado de forma profesional.",
+    "maur-gaytan": "Ingeniero de Profesión, Coach de Liderazgo Certificado, 4 años como Trader, especializado en operar el XAU y los JPY con estrategia propia, casado con dos hijas.",
+    "aring-long-fx": "Arin Long tiene una verdadera pasión por la educación y una sólida base en la resolución de problemas y la optimización de procesos, que desarrolló durante su carrera como ingeniera mecánica. Con una afinidad natural por el análisis técnico, se pasó al trading hace cinco años y rápidamente desarrolló una profunda pasión por los mercados. El enfoque de trading de Arin se basa en su mentalidad técnica y su meticulosa atención al detalle, habilidades que perfeccionó aún más a través de la tutoría con Richard Hall (también conocido como Market Bully). Al dominar estrategias simples pero poderosas, Arin sigue comprometida con el aprendizaje continuo, refinando constantemente sus técnicas y ampliando su conocimiento del mercado.",
+    "marcelo-t-fx": "Soy Marcelo Trullen, experto en E-commerce y Marketing Digital. Mi pasión por el crecimiento digital y la búsqueda continua de soluciones efectivas me ha permitido ayudar a los equipos a llevar sus negocios al siguiente nivel. Estoy comprometido con el aprendizaje continuo y la implementación de soluciones de vanguardia en el mundo del comercio electrónico.",
+    "richard-p-fx": "Educador experto en su campo, comprometido con el éxito de los estudiantes.",
+    "about-nikki-fx": "Educadora experta en su campo, comprometida con el éxito de los estudiantes.",
+    "jorge-damelines": "Experto en desarrollo y evolución humana, guía de experiencias transformadoras, Acompañando procesos de autoconocimiento, poder interior y acción consciente",
+    "jeff-beausoleil": "Mi nombre es Jeffrey Beausoleil, tengo 25 años y vivo en la costa sur de Montreal, Canadá. Nací sin mi mano y pie derechos, enfrenté muchos desafíos mientras crecía, incluido el acoso escolar y la dificultad para hacer amigos. A pesar de esto, me mantuve enérgico y positivo, jugando deportes como fútbol, balonmano, baloncesto y fútbol americano, sin dejar nunca que mi discapacidad me limitara.\\n\\nMi viaje me llevó a dar más de 250 discursos sobre prevención del acoso y motivación en Quebec y Ontario, llegando a 50,000 personas en un evento. Sin embargo, cuando llegó el COVID-19, tuve que pausar mis compromisos como orador y regresar a la escuela, donde estudié periodismo pero no estaba contento con la trayectoria profesional. Fue entonces cuando descubrí el trading, luchando inicialmente con conceptos erróneos y fracasos, pero finalmente teniendo éxito después de tres años de arduo trabajo y persistencia.",
+    "corey-williams": "Educador experto en su campo, comprometido con el éxito de los estudiantes.",
+    "dani-curtis": "Raquel Curtis, MBA, es una educadora financiera, emprendedora y autora de best-sellers internacionales dedicada a ayudar a las mujeres a tomar el control de sus finanzas y construir riqueza. Nativa de Georgia y madre de tres hijos, Raquel convirtió los reveses personales en éxito a través de la elaboración de presupuestos y la inversión, inspirando la creación de la marca The Boujee Banker. Enseña a las mujeres cómo presupuestar, ahorrar, invertir y hacer crecer negocios en línea. Raquel es la autora de Mastering Your Money Mindset y coautora del best-seller de Amazon MoneyTalk$, con un prólogo de Les Brown. Una oradora dinámica y candidata a doctorado, ha impactado a miles de personas en todo el mundo, guiando a individuos hacia un empoderamiento financiero duradero.",
+    "annie-toney": "Educadora experta en su campo, comprometida con el éxito de los estudiantes.",
+    "al-blue": "Dr. A.L.Blue, Sr. es un autor de best-sellers, evangelista de la riqueza e inversor de capital privado que se desempeña como Socio Senior y director gerente de Blue Wealth Solutions Consolidated LLC, una empresa de empoderamiento financiero, creación de riqueza y educación para una vida mejor, centrada en la verdadera creación de riqueza y la acumulación de activos en metales preciosos, así como en soluciones de creación de riqueza generacional y fondos fiduciarios. También se desempeña como evangelista de la riqueza enseñando principios bíblicos sobre la creación de riqueza y una vida mejor desde una perspectiva espiritual como Financiero del Reino.",
+    "paulina": "Educadora experta en su campo, comprometida con el éxito de los estudiantes.",
+    "henry-tyson": "Soy una persona fuerte y apasionada por lo que hago. Siempre que me lo propongo, puedo lograrlo. Pongo a Dios primero en todo lo que hago",
+    "steph-royal": "Stephon Royal es un educador de redes sociales apasionado y dinámico dedicado a empoderar a individuos y empresas para dominar el arte de la narración digital y la influencia en línea. Con años de experiencia en la creación de contenido viral y la construcción de marcas en línea impactantes, Stephon combina creatividad con estrategia para ayudar a los estudiantes a desbloquear todo el potencial de las plataformas de redes sociales\\n\\nEspecializado en creación de contenido, participación de la audiencia y estrategias de monetización, Stephon se ha ganado la reputación de ofrecer ideas prácticas, técnicas innovadoras y soluciones procesables. Ya sea que sea un influencer principiante, propietario de una pequeña empresa o un comercializador experimentado, el estilo de enseñanza accesible de Stephon garantiza que cada estudiante se vaya con las habilidades y la confianza para prosperar en el mundo en constante evolución de las redes sociales.\\n\\nConocido por sus talleres enérgicos y su entrenamiento personalizado, la misión de Stephon es simple: ayudarte a construir una marca que no solo se destaque, sino que también conecte, convierta y cree un impacto duradero."
+  },
+  "login": {
+    "title": "Iniciar Sesión",
+    "emailPlaceholder": "Correo electrónico",
+    "passwordPlaceholder": "Contraseña",
+    "loadingButton": "Ingresando...",
+    "loginButton": "Ingresar",
+    "resetPasswordPrompt": "¿Problemas para ingresar?",
+    "resetPasswordLink": "Restablece tu contraseña.",
+    "error": {
+        "generic": "Error al iniciar sesión. Inténtalo de nuevo.",
+        "expired": "Tu membresía ha expirado.",
+        "invalidCredentials": "Credenciales inválidas.",
+        "connection": "Error de conexión. Por favor, inténtalo de nuevo."
+    }
+  },
+  "educators": {
+      "pageTitle": "Educadores",
+      "noEducatorsInCategory": "No hay educadores en esta categoría."
+  },
+  "categories": {
+      "forex": "Forex",
+      "crypto": "Crypto",
+      "financial_literacy": "Alfabetización Financiera",
+      "marketing_digital": "Marketing Digital"
+  },
+  "calendar": {
+    "pageTitle": "Calendario",
+    "timeHeader": "Hora",
+    "educatorHeader": "Docente",
+    "noEvents": "No hay eventos programados para este día.",
+    "month": "Mes",
+    "week": "Semana",
+    "day": "Día",
+    "today": "Hoy",
+    "previous": "Anterior",
+    "next": "Siguiente"
+  }
+} 
