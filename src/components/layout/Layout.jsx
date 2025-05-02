@@ -39,7 +39,7 @@ const ContentWrapper = styled.div`
   display: flex;
   flex: 1;
   min-width: 0;
-  padding-top: ${HEADER_HEIGHT}; // Espacio para el Header fijo
+  padding-top: 0; // Eliminar espacio para el Header fijo
   // Ajuste de margen izquierdo según el estado del sidebar
   margin-left: ${props => props.$isSidebarCollapsed ? SIDEBAR_WIDTH_COLLAPSED : SIDEBAR_WIDTH}px;
   transition: margin-left 0.3s ease;
@@ -52,16 +52,17 @@ const ContentWrapper = styled.div`
 // MainContent ya no necesita el margen ni la transición
 const MainContent = styled.main`
   flex: 1;
-  padding: 24px; // Reducir padding por defecto (para escritorio)
+  padding: 0 24px 24px 24px; // Eliminar padding superior, mantener el resto
   background-color: #f9f9f9;
   overflow-y: auto; // Permitir scroll solo en el contenido principal
   min-width: 0; // Evitar overflow en flex
+  margin-top: ${HEADER_HEIGHT}; // Agregar margen superior igual a la altura del header
 
   @media (max-width: 768px) { // Reducir padding en pantallas más pequeñas
-    padding: 20px; // Mantener este
+    padding: 0 20px 20px 20px; // Eliminar padding superior, mantener el resto
   }
   @media (max-width: 480px) {
-    padding: 15px; // Mantener este
+    padding: 0 15px 15px 15px; // Eliminar padding superior, mantener el resto
   }
 `;
 

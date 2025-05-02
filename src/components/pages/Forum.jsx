@@ -1,9 +1,34 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { MdSearch, MdFilterList, MdChatBubbleOutline, MdVisibility, MdThumbUp, MdAdd } from 'react-icons/md';
+import { MdSearch, MdFilterList, MdChatBubbleOutline, MdKeyboardBackspace } from 'react-icons/md';
+import { useTranslation } from 'react-i18next';
 
 const PageContainer = styled.div`
-  padding: 24px;
+  padding: 0 20px 20px 20px;
+  background-color: #f7f9fc;
+  min-height: calc(100vh - 64px);
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  
+  @media (max-width: 992px) {
+    flex-direction: column;
+  }
+`;
+
+const MainContent = styled.div`
+  flex: 1;
+`;
+
+const SideContent = styled.div`
+  width: 350px;
+  flex-shrink: 0;
+  
+  @media (max-width: 992px) {
+    width: 100%;
+  }
 `;
 
 const PageHeader = styled.div`
@@ -14,406 +39,557 @@ const PageHeader = styled.div`
 `;
 
 const PageTitle = styled.h1`
-  font-size: 28px;
+  font-size: 24px;
   color: #333;
+  font-weight: 600;
 `;
 
-const NewTopicButton = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background-color: #0088cc;
+const PostInput = styled.div`
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 20px;
+`;
+
+const TextInput = styled.input`
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  
+  &::placeholder {
+    color: #666;
+  }
+  
+  &:focus {
+    border-color: #0088cc;
+  }
+`;
+
+const SubmitButton = styled.button`
+  padding: 8px 16px;
+  background-color: #1a1a2e;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   font-weight: 500;
+  float: right;
+  margin-top: 10px;
   cursor: pointer;
   
   &:hover {
-    background-color: #0077b3;
-  }
-  
-  svg {
-    font-size: 20px;
+    background-color: #0d0d1a;
   }
 `;
 
-const SearchContainer = styled.div`
+const FeedContainer = styled.div`
   display: flex;
-  gap: 16px;
-  margin-bottom: 24px;
+  flex-direction: column;
+  gap: 15px;
 `;
 
-const SearchInput = styled.div`
-  flex: 1;
-  position: relative;
-  
-  input {
-    width: 100%;
-    padding: 10px 16px 10px 40px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    font-size: 16px;
-    outline: none;
-    
-    &:focus {
-      border-color: #0088cc;
-    }
-  }
-  
-  svg {
-    position: absolute;
-    top: 50%;
-    left: 12px;
-    transform: translateY(-50%);
-    color: #999;
-    font-size: 20px;
-  }
-`;
-
-const FilterButton = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 16px;
-  border-radius: 4px;
-  border: 1px solid #ddd;
+const PostCard = styled.div`
   background-color: white;
-  font-size: 16px;
-  cursor: pointer;
-  
-  &:hover {
-    background-color: #f5f5f5;
-  }
-  
-  svg {
-    font-size: 20px;
-  }
-`;
-
-const CategoryTabs = styled.div`
-  display: flex;
-  gap: 16px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 12px;
-`;
-
-const CategoryTab = styled.button`
-  font-size: 16px;
-  font-weight: ${props => props.active ? '600' : '400'};
-  color: ${props => props.active ? '#0088cc' : '#666'};
-  padding: 8px 16px;
-  background: ${props => props.active ? '#e6f7ff' : 'transparent'};
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  
-  &:hover {
-    color: #0088cc;
-    background: ${props => props.active ? '#e6f7ff' : '#f5f5f5'};
-  }
-`;
-
-const TopicsContainer = styled.div`
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 `;
 
-const TopicItem = styled.div`
-  display: flex;
-  padding: 16px;
-  border-bottom: 1px solid #f0f0f0;
-  
-  &:last-child {
-    border-bottom: none;
-  }
-  
-  &:hover {
-    background-color: #f9f9f9;
-  }
+const PostContent = styled.div`
+  padding: 15px;
 `;
 
-const TopicAvatar = styled.div`
-  width: 48px;
-  height: 48px;
+const PostHeader = styled.div`
+  display: flex;
+  margin-bottom: 15px;
+`;
+
+const CryptoIcon = styled.div`
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background-color: #f0f0f0;
-  margin-right: 16px;
+  background-color: #f7f9fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-weight: bold;
+`;
+
+const CryptoDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const CryptoName = styled.span`
+  font-weight: bold;
+`;
+
+const CryptoSymbol = styled.span`
+  font-size: 0.9em;
+  color: #666;
+`;
+
+const CryptoPrice = styled.div`
+  margin-left: auto;
+  text-align: right;
+`;
+
+const Price = styled.div`
+  font-weight: bold;
+  font-size: 1.1em;
+`;
+
+const PriceChange = styled.div`
+  color: ${props => props.positive ? '#16c784' : '#ea3943'};
+  font-size: 0.9em;
+`;
+
+const PostTitle = styled.h2`
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #333;
+`;
+
+const PostImage = styled.div`
+  width: 100%;
+  height: 120px;
+  background-color: #f7f9fc;
+  margin-bottom: 15px;
+  overflow: hidden;
   
   img {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
     object-fit: cover;
   }
 `;
 
-const TopicContent = styled.div`
-  flex: 1;
+const TagsContainer = styled.div`
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
 `;
 
-const TopicTitle = styled.h3`
-  font-size: 18px;
-  margin-bottom: 4px;
-  color: #333;
+const Tag = styled.span`
+  padding: 4px 10px;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  font-size: 0.8em;
+  color: #666;
+`;
+
+const AuthorSection = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const AuthorAvatar = styled.div`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #eee;
+  margin-right: 10px;
+  overflow: hidden;
   
-  a {
-    text-decoration: none;
-    color: inherit;
-    
-    &:hover {
-      color: #0088cc;
-    }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 
-const TopicMeta = styled.div`
+const AuthorInfo = styled.div`
   display: flex;
-  gap: 16px;
-  margin-bottom: 8px;
+  flex-direction: column;
 `;
 
-const TopicMetaItem = styled.div`
+const AuthorName = styled.span`
+  font-weight: 500;
+  font-size: 0.9em;
+`;
+
+const PostTime = styled.span`
+  font-size: 0.8em;
+  color: #666;
+`;
+
+const PostFooter = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 15px;
+  border-top: 1px solid #f0f0f0;
+`;
+
+const CommentCount = styled.div`
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
+  color: #666;
+  font-size: 0.9em;
+`;
+
+const SidebarCard = styled.div`
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 20px;
+`;
+
+const SidebarTitle = styled.h2`
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+`;
+
+const NewsItem = styled.div`
+  margin-bottom: 15px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const NewsImage = styled.div`
+  width: 100%;
+  height: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+const NewsTitle = styled.h3`
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #333;
+`;
+
+const NewsContent = styled.p`
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+`;
+
+const NewsTime = styled.div`
+  display: flex;
+  justify-content: space-between;
   font-size: 12px;
   color: #666;
+  margin-top: 5px;
+`;
+
+const BackButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 15px;
   
-  svg {
+  &:hover {
     color: #0088cc;
   }
 `;
 
-const TopicPreview = styled.p`
-  font-size: 14px;
-  color: #555;
-  line-height: 1.5;
-  margin-bottom: 8px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-`;
-
-const TopicStats = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-left: auto;
-  padding-left: 16px;
-`;
-
-const TopicStat = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 60px;
-`;
-
-const StatValue = styled.div`
-  font-size: 18px;
-  font-weight: 600;
-  color: #0088cc;
-`;
-
-const StatLabel = styled.div`
-  font-size: 12px;
-  color: #666;
-`;
-
-const Pagination = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 24px;
-`;
-
-const PageButton = styled.button`
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 4px;
-  border-radius: 4px;
-  border: 1px solid ${props => props.active ? '#0088cc' : '#ddd'};
-  background-color: ${props => props.active ? '#0088cc' : 'white'};
-  color: ${props => props.active ? 'white' : '#333'};
-  font-weight: ${props => props.active ? '600' : '400'};
-  cursor: pointer;
-  
-  &:hover {
-    background-color: ${props => props.active ? '#0088cc' : '#f5f5f5'};
-  }
-  
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-`;
-
-// Mock data for forum topics
-const topicsData = [
-  {
-    id: 1,
-    title: '¿Cuál es vuestra estrategia para invertir en el sector tecnológico?',
-    author: 'Carlos Rodríguez',
-    date: '15 Abr 2025',
-    category: 'Inversiones',
-    preview: 'Estoy interesado en conocer qué estrategias utilizáis para invertir en el sector tecnológico. ¿Preferís las grandes empresas establecidas o apostáis por startups con potencial?',
-    replies: 24,
-    views: 158,
-    likes: 36
-  },
-  {
-    id: 2,
-    title: 'Análisis técnico del EUR/USD - Perspectivas para 2025',
-    author: 'Laura Martínez',
-    date: '14 Abr 2025',
-    category: 'Trading',
-    preview: 'Comparto un análisis técnico del par EUR/USD con proyecciones para el resto del año 2025. Me gustaría conocer vuestras opiniones y perspectivas para este par.',
-    replies: 18,
-    views: 142,
-    likes: 28
-  },
-  {
-    id: 3,
-    title: 'Mejores zonas para invertir en Real Estate en España',
-    author: 'Manuel López',
-    date: '12 Abr 2025',
-    category: 'Real Estate',
-    preview: '¿Cuáles consideráis que son las mejores zonas para invertir en inmuebles en España actualmente? ¿Grandes ciudades, costa, o quizás zonas rurales con potencial turístico?',
-    replies: 32,
-    views: 215,
-    likes: 44
-  },
-  {
-    id: 4,
-    title: 'Estrategias de ahorro e inversión para jóvenes',
-    author: 'Ana García',
-    date: '10 Abr 2025',
-    category: 'Finanzas Personales',
-    preview: 'Soy bastante joven (25 años) y quiero empezar a planificar mi futuro financiero. ¿Qué consejos daríais a alguien que empieza desde cero en esto de las inversiones?',
-    replies: 42,
-    views: 280,
-    likes: 67
-  },
-  {
-    id: 5,
-    title: 'Opiniones sobre el curso de Análisis Fundamental',
-    author: 'Roberto Sánchez',
-    date: '8 Abr 2025',
-    category: 'Academia',
-    preview: 'Estoy pensando en inscribirme en el curso de Análisis Fundamental. ¿Alguien lo ha hecho ya? Me gustaría conocer vuestras opiniones y experiencias.',
-    replies: 15,
-    views: 118,
-    likes: 22
-  }
-];
+// Componente de detalle del post
+const PostDetail = ({ post, onBack }) => {
+  return (
+    <div>
+      <BackButton onClick={onBack}>
+        <MdKeyboardBackspace /> Volver al foro
+      </BackButton>
+      
+      <PostCard>
+        <PostContent>
+          <PostHeader>
+            <CryptoIcon>
+              <span>{post.crypto.symbol.charAt(0)}</span>
+            </CryptoIcon>
+            <CryptoDetails>
+              <CryptoName>{post.crypto.name}</CryptoName>
+              <CryptoSymbol>{post.crypto.symbol}</CryptoSymbol>
+            </CryptoDetails>
+            <CryptoPrice>
+              <Price>{post.crypto.price}</Price>
+              <PriceChange positive={post.crypto.change > 0}>
+                {post.crypto.change > 0 ? '+' : ''}{post.crypto.change}%
+              </PriceChange>
+            </CryptoPrice>
+          </PostHeader>
+          
+          <PostTitle>{post.title}</PostTitle>
+          
+          <AuthorSection>
+            <AuthorAvatar>
+              <img src={post.author.avatar} alt={post.author.name} />
+            </AuthorAvatar>
+            <AuthorInfo>
+              <AuthorName>{post.author.name}</AuthorName>
+              <PostTime>Hace {post.time}</PostTime>
+            </AuthorInfo>
+          </AuthorSection>
+          
+          <TagsContainer>
+            {post.tags.map((tag, index) => (
+              <Tag key={index}>{tag}</Tag>
+            ))}
+          </TagsContainer>
+          
+          <PostImage>
+            <img src={post.image} alt={post.title} />
+          </PostImage>
+          
+          <div>
+            <p style={{ lineHeight: '1.6', fontSize: '14px', color: '#333', marginBottom: '15px' }}>
+              {post.content || 'Este post muestra información sobre las mejores prácticas para desarrolladores de blockchain en innovationchain. Se discuten las últimas tendencias y tecnologías para el desarrollo eficiente de soluciones basadas en blockchain.'}
+            </p>
+            <p style={{ lineHeight: '1.6', fontSize: '14px', color: '#333' }}>
+              Las tecnologías blockchain continúan evolucionando rápidamente, y los desarrolladores deben mantenerse al día con las últimas herramientas y metodologías para crear aplicaciones eficientes y seguras.
+            </p>
+          </div>
+        </PostContent>
+        
+        <PostFooter>
+          <CommentCount>
+            <MdChatBubbleOutline /> {post.comments} comentarios
+          </CommentCount>
+        </PostFooter>
+      </PostCard>
+    </div>
+  );
+};
 
 const Forum = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [activeCategory, setActiveCategory] = useState('todos');
+  const { t } = useTranslation();
+  const [selectedPost, setSelectedPost] = useState(null);
   
-  const categories = [
-    { id: 'todos', name: 'Todos' },
-    { id: 'inversiones', name: 'Inversiones' },
-    { id: 'trading', name: 'Trading' },
-    { id: 'realestate', name: 'Real Estate' },
-    { id: 'finanzas', name: 'Finanzas Personales' },
-    { id: 'academia', name: 'Academia' }
+  // Datos de ejemplo para el feed
+  const posts = [
+    {
+      id: 1,
+      title: 'Mejores prácticas para desarrolladores de blockchain en innovationchain',
+      crypto: {
+        name: 'Bitcoin',
+        symbol: 'BTC',
+        price: '$20,788',
+        change: 0.25
+      },
+      image: 'https://via.placeholder.com/350x150',
+      tags: ['Finanzas', 'Bitcoin', 'Crypto'],
+      author: {
+        name: 'Cristian Andrés Salazar',
+        avatar: 'https://via.placeholder.com/30'
+      },
+      time: '3 meses',
+      comments: 56
+    },
+    {
+      id: 2,
+      title: 'Mejores prácticas para desarrolladores de blockchain en innovationchain',
+      crypto: {
+        name: 'Bitcoin',
+        symbol: 'BTC',
+        price: '$20,788',
+        change: 0.25
+      },
+      image: 'https://via.placeholder.com/350x150',
+      tags: ['Finanzas', 'Bitcoin', 'Crypto'],
+      author: {
+        name: 'Cristian Andrés Salazar',
+        avatar: 'https://via.placeholder.com/30'
+      },
+      time: '3 meses',
+      comments: 56
+    },
+    {
+      id: 3,
+      title: 'Mejores prácticas para desarrolladores de blockchain en innovationchain',
+      crypto: {
+        name: 'Bitcoin',
+        symbol: 'BTC',
+        price: '$20,788',
+        change: 0.25
+      },
+      image: 'https://via.placeholder.com/350x150',
+      tags: ['Finanzas', 'Bitcoin', 'Crypto'],
+      author: {
+        name: 'Cristian Andrés Salazar',
+        avatar: 'https://via.placeholder.com/30'
+      },
+      time: '3 meses',
+      comments: 56
+    },
+    {
+      id: 4,
+      title: 'Mejores prácticas para desarrolladores de blockchain en innovationchain',
+      crypto: {
+        name: 'Bitcoin',
+        symbol: 'BTC',
+        price: '$20,788',
+        change: 0.25
+      },
+      image: 'https://via.placeholder.com/350x150',
+      tags: ['Finanzas', 'Bitcoin', 'Crypto'],
+      author: {
+        name: 'Cristian Andrés Salazar',
+        avatar: 'https://via.placeholder.com/30'
+      },
+      time: '3 meses',
+      comments: 56
+    },
+    {
+      id: 5,
+      title: 'Mejores prácticas para desarrolladores de blockchain en innovationchain',
+      crypto: {
+        name: 'Bitcoin',
+        symbol: 'BTC',
+        price: '$20,788',
+        change: 0.25
+      },
+      image: 'https://via.placeholder.com/350x150',
+      tags: ['Finanzas', 'Bitcoin', 'Crypto'],
+      author: {
+        name: 'Cristian Andrés Salazar',
+        avatar: 'https://via.placeholder.com/30'
+      },
+      time: '3 meses',
+      comments: 56
+    }
   ];
-  
+
+  // Noticia reciente para la barra lateral
+  const recentNews = {
+    title: 'Reserva de divisas',
+    image: '/images/81.png',
+    content: 'En marzo de 2025, el presidente de Estados Unidos, Donald Trump, firmó una orden ejecutiva para establecer una Reserva Estratégica de Bitcoin y una Reserva de Activos Digitales...',
+    time: '2:00 Am',
+    source: 'Swiss National Bank'
+  };
+
+  const handlePostClick = (post) => {
+    setSelectedPost(post);
+  };
+
+  const handleBackToForum = () => {
+    setSelectedPost(null);
+  };
+
   return (
     <PageContainer>
-      <PageHeader>
-        <PageTitle>Foro</PageTitle>
-        <NewTopicButton>
-          <MdAdd />
-          Nuevo tema
-        </NewTopicButton>
-      </PageHeader>
-      
-      <SearchContainer>
-        <SearchInput>
-          <MdSearch />
-          <input 
-            type="text" 
-            placeholder="Buscar temas..." 
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </SearchInput>
-        <FilterButton>
-          <MdFilterList />
-          Filtrar
-        </FilterButton>
-      </SearchContainer>
-      
-      <CategoryTabs>
-        {categories.map(category => (
-          <CategoryTab 
-            key={category.id}
-            active={activeCategory === category.id}
-            onClick={() => setActiveCategory(category.id)}
-          >
-            {category.name}
-          </CategoryTab>
-        ))}
-      </CategoryTabs>
-      
-      <TopicsContainer>
-        {topicsData.map(topic => (
-          <TopicItem key={topic.id}>
-            <TopicAvatar>
-              <img src={`/api/placeholder/48/48`} alt={topic.author} />
-            </TopicAvatar>
-            <TopicContent>
-              <TopicTitle>
-                <a href={`#/foro/topic/${topic.id}`}>{topic.title}</a>
-              </TopicTitle>
-              <TopicMeta>
-                <TopicMetaItem>{topic.author}</TopicMetaItem>
-                <TopicMetaItem>{topic.date}</TopicMetaItem>
-                <TopicMetaItem>
-                  <MdChatBubbleOutline />
-                  {topic.category}
-                </TopicMetaItem>
-              </TopicMeta>
-              <TopicPreview>{topic.preview}</TopicPreview>
-            </TopicContent>
-            <TopicStats>
-              <TopicStat>
-                <StatValue>{topic.replies}</StatValue>
-                <StatLabel>Respuestas</StatLabel>
-              </TopicStat>
-              <TopicStat>
-                <StatValue>{topic.views}</StatValue>
-                <StatLabel>Vistas</StatLabel>
-              </TopicStat>
-              <TopicStat>
-                <StatValue>{topic.likes}</StatValue>
-                <StatLabel>Likes</StatLabel>
-              </TopicStat>
-            </TopicStats>
-          </TopicItem>
-        ))}
-      </TopicsContainer>
-      
-      <Pagination>
-        <PageButton disabled>«</PageButton>
-        <PageButton active>1</PageButton>
-        <PageButton>2</PageButton>
-        <PageButton>3</PageButton>
-        <PageButton>4</PageButton>
-        <PageButton>5</PageButton>
-        <PageButton>»</PageButton>
-      </Pagination>
+      {selectedPost ? (
+        <PostDetail post={selectedPost} onBack={handleBackToForum} />
+      ) : (
+        <>
+          <PageHeader>
+            <PageTitle>{t('sidebar.forum')}</PageTitle>
+          </PageHeader>
+          
+          <ContentContainer>
+            <MainContent>
+              <PostInput>
+                <TextInput placeholder="Escribe aquí tu post" />
+                <SubmitButton>Enviar</SubmitButton>
+                <div style={{ clear: 'both' }}></div>
+              </PostInput>
+              
+              <FeedContainer>
+                {posts.map(post => (
+                  <PostCard key={post.id} onClick={() => handlePostClick(post)} style={{ cursor: 'pointer' }}>
+                    <PostContent>
+                      <PostHeader>
+                        <CryptoIcon>
+                          <span>{post.crypto.symbol.charAt(0)}</span>
+                        </CryptoIcon>
+                        <CryptoDetails>
+                          <CryptoName>{post.crypto.name}</CryptoName>
+                          <CryptoSymbol>{post.crypto.symbol}</CryptoSymbol>
+                        </CryptoDetails>
+                        <CryptoPrice>
+                          <Price>{post.crypto.price}</Price>
+                          <PriceChange positive={post.crypto.change > 0}>
+                            {post.crypto.change > 0 ? '+' : ''}{post.crypto.change}%
+                          </PriceChange>
+                        </CryptoPrice>
+                      </PostHeader>
+                      
+                      <PostTitle>{post.title}</PostTitle>
+                      
+                      <TagsContainer>
+                        {post.tags.map((tag, index) => (
+                          <Tag key={index}>{tag}</Tag>
+                        ))}
+                      </TagsContainer>
+                      
+                      <AuthorSection>
+                        <AuthorAvatar>
+                          <img src={post.author.avatar} alt={post.author.name} />
+                        </AuthorAvatar>
+                        <AuthorInfo>
+                          <AuthorName>{post.author.name}</AuthorName>
+                          <PostTime>Hace {post.time}</PostTime>
+                        </AuthorInfo>
+                      </AuthorSection>
+                      
+                      <PostImage>
+                        <img src={post.image} alt={post.title} />
+                      </PostImage>
+                    </PostContent>
+                    
+                    <PostFooter>
+                      <CommentCount>
+                        <MdChatBubbleOutline /> {post.comments} comentarios
+                      </CommentCount>
+                    </PostFooter>
+                  </PostCard>
+                ))}
+              </FeedContainer>
+            </MainContent>
+            
+            <SideContent>
+              <SidebarCard>
+                <SidebarTitle>Noticias</SidebarTitle>
+                <NewsItem>
+                  <BackButton 
+                    as="a" 
+                    href="#" 
+                    onClick={(e) => { e.preventDefault(); }}
+                    style={{ margin: '0 0 10px 0' }}
+                  >
+                    <MdKeyboardBackspace /> {recentNews.title}
+                  </BackButton>
+                  <NewsImage>
+                    <img src={recentNews.image} alt={recentNews.title} />
+                  </NewsImage>
+                  <NewsContent>
+                    {recentNews.content}
+                  </NewsContent>
+                  <NewsTime>
+                    <span>{recentNews.time}</span>
+                    <span>Fuente: {recentNews.source}</span>
+                  </NewsTime>
+                </NewsItem>
+              </SidebarCard>
+            </SideContent>
+          </ContentContainer>
+        </>
+      )}
     </PageContainer>
   );
 };

@@ -8,6 +8,7 @@ import EducatorDetail from './components/pages/LiveEducators/EducatorDetail'; //
 import EducatorSessions from './components/pages/EducatorsSessions/EducatorSessions'; // Importar nueva página
 import Academy from './components/pages/Academy';
 import Forum from './components/pages/Forum';
+import Scanner from './components/pages/Scanner'; // Importar página Scanner
 import BackOffice from './components/pages/BackOffice';
 import LoginPage from './components/pages/LoginPage'; // Corregir ruta a la ubicación real
 import LanguageSelector from './components/pages/LanguageSelector'; // Importar selector
@@ -35,6 +36,7 @@ function App() {
         <Route path="/educadores/:educatorId/sesiones" element={<Layout><EducatorSessions /></Layout>} />
         <Route path="/academia" element={<Layout><Academy /></Layout>} />
         <Route path="/foro" element={<Layout><Forum /></Layout>} />
+        <Route path="/scanner" element={<Layout><Scanner /></Layout>} />
         <Route path="/back-office" element={<Layout><BackOffice /></Layout>} />
         
         {/* Puedes añadir una ruta comodín 404 si lo deseas */}

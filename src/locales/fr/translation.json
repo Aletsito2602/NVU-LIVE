@@ -6,7 +6,14 @@
     "academy": "Académie",
     "forum": "Forum",
     "backoffice": "Back office",
+    "scanner": "Scanner",
     "menu": "Menu"
+  },
+  "scanner": {
+    "title": "Scanners",
+    "gold": "GOLD SCANNER",
+    "abi": "ABI SCANNER",
+    "pops": "POPS SCANNER"
   },
   "home": {
     "welcome": "Bienvenue",

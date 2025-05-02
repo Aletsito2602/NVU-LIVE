@@ -8,7 +8,10 @@ import {
   MdSchool, 
   MdForum, 
   MdWork,
-  MdArrowBack 
+  MdArrowBack,
+  MdQrCodeScanner,
+  MdMenu,
+  MdChevronLeft
 } from 'react-icons/md';
 import { FaInstagram, FaTelegram } from 'react-icons/fa';
 import SidebarItem from '../ui/SidebarItem';
@@ -19,16 +22,15 @@ const SIDEBAR_WIDTH_COLLAPSED = 70;
 
 const SidebarContainer = styled.aside`
   position: fixed;
-  top: 0;
+  top: 64px;
   left: 0;
   width: ${SIDEBAR_WIDTH}px;
-  height: 100vh;
+  height: calc(100vh - 64px);
   background: white;
   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.1);
-  padding-top: 20px;
   display: flex;
   flex-direction: column;
-  z-index: 1000;
+  z-index: 900;
   transition: transform 0.3s ease, width 0.3s ease;
   overflow-y: auto;
 
@@ -41,6 +43,32 @@ const SidebarContainer = styled.aside`
   @media (max-width: 991px) {
     width: ${SIDEBAR_WIDTH}px;
     transform: translateX(${props => props.$isOpen ? '0' : '-100%'});
+    top: 64px;
+    height: calc(100vh - 64px);
+  }
+`;
+
+const CollapseButton = styled.button`
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: #0088cc;
+  }
+  
+  @media (max-width: 991px) {
+    display: none;
   }
 `;
 
@@ -49,7 +77,7 @@ const MenuSection = styled.div`
   display: flex;
   flex-direction: column;
   padding: 10px 0;
-  margin-top: 40px;
+  margin-top: 10px;
 `;
 
 const SocialSection = styled.div`
@@ -95,7 +123,7 @@ const SocialLinkItem = styled.li`
   }
 `;
 
-const Sidebar = ({ isOpen, isCollapsed, onClose }) => {
+const Sidebar = ({ isOpen, isCollapsed, onClose, onToggleCollapse }) => {
   const location = useLocation();
   const { t } = useTranslation();
   
@@ -105,6 +133,7 @@ const Sidebar = ({ isOpen, isCollapsed, onClose }) => {
     { path: '/educadores', label: t('sidebar.educators'), icon: <MdPeople /> },
     { path: '/academia', label: t('sidebar.academy'), icon: <MdSchool /> },
     { path: '/foro', label: t('sidebar.forum'), icon: <MdForum /> },
+    { path: '/scanner', label: t('sidebar.scanner'), icon: <MdQrCodeScanner /> },
     { path: '/back-office', label: t('sidebar.backoffice'), icon: <MdWork /> },
   ];
   
@@ -112,6 +141,13 @@ const Sidebar = ({ isOpen, isCollapsed, onClose }) => {
 
   return (
     <SidebarContainer $isOpen={isOpen} $isCollapsed={actuallyCollapsed}>
+      <CollapseButton 
+        onClick={onToggleCollapse}
+        style={{ position: 'absolute', top: '10px', right: '10px' }}
+      >
+        {actuallyCollapsed ? <MdMenu /> : <MdChevronLeft />}
+      </CollapseButton>
+      
       <MenuSection>
         {menuItems.map((item) => (
           <SidebarItem 

@@ -15,9 +15,11 @@ const HeaderContainer = styled.header`
   background: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   height: ${HEADER_HEIGHT};
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 10;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   width: 100%;
 `;
 
